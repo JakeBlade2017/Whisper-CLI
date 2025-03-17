@@ -7,10 +7,6 @@ import torch  # Import torch to check for GPU availability
 # Global variable to save the actual progress (this is for stop button)
 current_process = None
 
-def toggle_language_visibility(task):
-    # Show language dropdown only if the task is "transcribe"
-    return gr.update(visible=task == "translate")
-
 def run_whisper(input_file, output_dir, output_format, model_source, model, custom_model_path, language, device, w_time_stamp, max_line_width, max_line_count):
     global current_process
     os.makedirs(output_dir, exist_ok=True)
