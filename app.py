@@ -58,24 +58,6 @@ with gr.Blocks() as demo:
             else:
                 return gr.update(visible=False)
 
-        """
-        device_GPU = gr.Radio(
-            choices=['CPU', 'GPU'],
-            value='GPU',
-            label='Device',
-            info='Choose what device you will use. GPU is faster than CPU.',
-            visible=False
-        )
-
-        device_CPU = gr.Radio(
-            choices=['CPU'],
-            value='CPU',
-            label='Device',
-            info='You are using CPU! GPU is recommended to make transcription faster.',
-            visible=False
-        )
-        """
-
         # This is now a unified device selector
         device = gr.Radio(
             choices=['cpu', 'cuda'],
