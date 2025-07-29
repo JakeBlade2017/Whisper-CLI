@@ -10,6 +10,7 @@ import torch
 def run_whisper(audio_file, model, device, output_format, output_dir, verbose, fp16, word_timestamps, max_line_count):
     os.makedirs(output_dir, exist_ok=True)
 
+    #Commands that program will puse like you do in cmd: whisper audio_file --model turbo --device cuda, etc, etc
     command = [
         "whisper",
         audio_file,
@@ -23,6 +24,7 @@ def run_whisper(audio_file, model, device, output_format, output_dir, verbose, f
         "--max_line_count", str(max_line_count),
     ]
 
+    #Handles error handling
     try:
         result = subprocess.run(command, capture_output=True, text=True, check=True)
         return f"Transcription successful! Files saved in: {output_dir}\n\n{result.stdout}"
@@ -36,6 +38,7 @@ with gr.Blocks() as demo:
     with gr.Row():
         audio_file = gr.Audio(sources='upload', label='Upload your audio file', show_download_button=False, show_share_button=False, type="filepath")
 
+    #Transcribe settings
     with gr.Tab("Transcription"):
         model = gr.Dropdown(
             choices=['tiny', 'base', 'small', 'medium', 'large', 'turbo'],
@@ -66,7 +69,6 @@ with gr.Blocks() as demo:
             info='Choose what device you will use. GPU is faster than CPU.',
         )
 
-
         output_format = gr.Dropdown(
             choices=['txt', 'vtt', 'srt', 'tsv', 'json', 'all'],
             value='txt',
@@ -80,6 +82,7 @@ with gr.Blocks() as demo:
             value="./output"
         )
 
+    #Transcribe settings
     with gr.Tab("Settings"):
         verbose = gr.Radio(
             choices=['True', 'False'],
@@ -126,6 +129,7 @@ with gr.Blocks() as demo:
         #Triggers when word_timestamps (input) changes
         word_timestamps.change(fn=toggle_max_line_count, inputs=word_timestamps, outputs=max_line_count)
 
+    #Output parameters
     output_text = gr.Textbox(label="Result", lines=10)
 
     submit_btn = gr.Button("Transcribe")
