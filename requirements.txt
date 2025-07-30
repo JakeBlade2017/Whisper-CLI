@@ -1,2 +1,4 @@
 openai-whisper @ git+https://github.com/openai/whisper.git@517a43ecd132a2089d85f4ebc044728a71d49f6e
-torch==2.6.0 torchvision==0.21.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cu118
+torch==2.6.0 --index-url https://download.pytorch.org/whl/cu118
+torchvision==0.21.0
+torchaudio==2.6.0 
