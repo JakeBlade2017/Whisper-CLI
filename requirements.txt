@@ -1,3 +1,0 @@
-openai-whisper @ git+https://github.com/openai/whisper.git@517a43ecd132a2089d85f4ebc044728a71d49f6e
-torch==2.6.0+cu118
-gradio==5.38.2
