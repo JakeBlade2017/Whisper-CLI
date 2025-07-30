@@ -69,9 +69,9 @@ with gr.Blocks() as demo:
             info='Choose what device you will use. GPU is faster than CPU.',
         )
 
-        output_format = gr.Dropdown(
+        output_format = gr.CheckboxGroup(
             choices=['txt', 'vtt', 'srt', 'tsv', 'json', 'all'],
-            value='txt',
+            value='all',
             label='Output format',
             info='Choose what file format do you want to be exported the transcription, choose "all" if you want to export into all options available',
         )
@@ -130,7 +130,8 @@ with gr.Blocks() as demo:
         word_timestamps.change(fn=toggle_max_line_count, inputs=word_timestamps, outputs=max_line_count)
 
     #Output parameters
-    output_text = gr.Textbox(label="Result", lines=10)
+    with gr.Tab("Output"):
+        output_text = gr.Textbox(label="Result", lines=10)
 
     submit_btn = gr.Button("Transcribe")
 
